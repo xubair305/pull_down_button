@@ -27,5 +27,5 @@ dependencies:
 
 dev_dependencies:
   yet_another_lint:
-    # git: https://github.com/notDmDrl/yet_another_lint.git
-    path: ../yet_another_lint
+    git: https://github.com/xubair305/yet_another_lint.git
+    # path: ../yet_another_lint

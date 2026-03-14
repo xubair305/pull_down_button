@@ -145,7 +145,10 @@ class PullDownMenuRoute<VoidCallback> extends PopupRoute<VoidCallback> {
             menuPosition: menuPosition,
             menuOffset: menuOffset,
           ),
-          child: capturedThemes.wrap(child),
+          child: FocusScope(
+            canRequestFocus: false,
+            child: capturedThemes.wrap(child),
+          ),
         ),
       ),
     );

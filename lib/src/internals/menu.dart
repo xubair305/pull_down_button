@@ -43,7 +43,11 @@ class MenuDecoration extends StatelessWidget {
       );
     }
 
-    return borderClipper(borderRadius, box);
+    // return borderClipper(borderRadius, box);
+    return ClipRSuperellipse(
+      borderRadius: BorderRadius.circular(30),
+      child: box,
+    );
   }
 }
 
@@ -91,8 +95,17 @@ class _MenuBodyState extends State<MenuBody> {
         primary: false,
         clipBehavior: Clip.none,
         controller: _effectiveScrollController,
-        child: ListBody(
-          children: PullDownMenuSeparator.wrapVerticalList(widget.items),
+        // child: ListBody(
+        //   children: PullDownMenuSeparator.wrapVerticalList(widget.items),
+        // ),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 6,
+            vertical: 12,
+          ),
+          child: ListBody(
+            children: PullDownMenuSeparator.wrapVerticalList(widget.items),
+          ),
         ),
       ),
     );

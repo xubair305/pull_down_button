@@ -17,10 +17,7 @@ const double _kDividerHeight = 8;
 @immutable
 class PullDownMenuDivider extends StatelessWidget {
   /// Creates a large horizontal divider for a pull-down menu.
-  const PullDownMenuDivider({
-    super.key,
-    this.color,
-  });
+  const PullDownMenuDivider({super.key, this.color});
 
   /// The color of the divider.
   ///
@@ -32,9 +29,7 @@ class PullDownMenuDivider extends StatelessWidget {
   Widget build(BuildContext context) => Divider(
     height: _kDividerHeight,
     thickness: _kDividerHeight,
-    color:
-        color ??
-        MenuConfig.ambientThemeOf(context).dividerTheme.largeDividerColor!,
+    color: color ?? MenuConfig.ambientThemeOf(context).dividerTheme.largeDividerColor!,
   );
 }
 
@@ -45,17 +40,13 @@ class PullDownMenuDivider extends StatelessWidget {
 @internal
 class PullDownMenuSeparator extends StatelessWidget {
   /// Creates a small divider for a pull-down menu.
-  const PullDownMenuSeparator._({
-    required this.axis,
-  });
+  const PullDownMenuSeparator._({required this.axis});
 
   /// The direction along which the divider is rendered.
   final Axis axis;
 
   /// Helper method that simplifies separation of pull-down menu items.
-  static List<Widget> wrapVerticalList(
-    List<Widget> items,
-  ) {
+  static List<Widget> wrapVerticalList(List<Widget> items) {
     if (items.isEmpty || items.length == 1) {
       return items;
     }
@@ -81,9 +72,7 @@ class PullDownMenuSeparator extends StatelessWidget {
 
   /// Helper method that simplifies separation of side-by-side appearance row
   /// items for [PullDownMenuActionsRow].
-  static List<Widget> wrapSideBySide(
-    List<Widget> items,
-  ) {
+  static List<Widget> wrapSideBySide(List<Widget> items) {
     if (items.isEmpty) {
       return items;
     } else if (items.length == 1) {
@@ -93,30 +82,27 @@ class PullDownMenuSeparator extends StatelessWidget {
     const divider = PullDownMenuSeparator._(axis: Axis.vertical);
 
     return [
-      for (final i in items.take(items.length - 1)) ...[
-        Expanded(child: i),
-        divider,
-      ],
+      for (final i in items.take(items.length - 1)) ...[Expanded(child: i), divider],
       Expanded(child: items.last),
     ];
   }
 
   @override
   Widget build(BuildContext context) {
-    final Color color =
-        MenuConfig.ambientThemeOf(context).dividerTheme.dividerColor!;
+    final Color color = MenuConfig.ambientThemeOf(context).dividerTheme.dividerColor!;
 
-    return switch (axis) {
-      Axis.horizontal => Divider(
-        height: _kSeparatorHeight,
-        thickness: _kSeparatorHeight,
-        color: color,
-      ),
-      Axis.vertical => VerticalDivider(
-        width: _kSeparatorHeight,
-        thickness: _kSeparatorHeight,
-        color: color,
-      ),
-    };
+    // return switch (axis) {
+    //   Axis.horizontal => Divider(
+    //     height: _kSeparatorHeight,
+    //     thickness: _kSeparatorHeight,
+    //     color: color,
+    //   ),
+    //   Axis.vertical => VerticalDivider(
+    //     width: _kSeparatorHeight,
+    //     thickness: _kSeparatorHeight,
+    //     color: color,
+    //   ),
+    // };
+    return SizedBox.shrink();
   }
 }

@@ -49,10 +49,7 @@ const EdgeInsetsGeometry _kIconActionPadding = EdgeInsetsDirectional.all(10);
 /// * [PullDownMenuItem.delayedTapHandler], a tap handler that pops the menu,
 /// waits for an animation to end and calls the [onTap].
 typedef PullDownMenuItemTapHandler =
-    void Function(
-      BuildContext context,
-      VoidCallback? onTap,
-    );
+    void Function(BuildContext context, VoidCallback? onTap);
 
 /// An item in a cupertino style pull-down menu.
 ///
@@ -204,10 +201,7 @@ class PullDownMenuItem extends StatelessWidget {
   /// navigation stack (like opening a new screen or showing dialog) so there
   /// is a smoother transition between the pull-down menu and said navigation
   /// stack changing action.
-  static void delayedTapHandler(
-    BuildContext context,
-    VoidCallback? onTap,
-  ) {
+  static void delayedTapHandler(BuildContext context, VoidCallback? onTap) {
     // If the menu was opened from [PullDownButton] or [showPullDownMenu] - pop
     // route.
     if (ModalRoute.of(context) is PullDownMenuRoute) {
@@ -226,24 +220,19 @@ class PullDownMenuItem extends StatelessWidget {
   /// An additional, pre-made tap handler for [PullDownMenuItem].
   ///
   /// The behavior is to call the [onTap] without popping the menu.
-  static void noPopTapHandler(
-    BuildContext _,
-    VoidCallback? onTap,
-  ) => onTap?.call();
+  static void noPopTapHandler(BuildContext _, VoidCallback? onTap) =>
+      onTap?.call();
 
   @override
   Widget build(BuildContext context) {
     final ElementSize size = ActionsRowSizeConfig.of(context);
 
-    assert(
-      switch (size) {
-        ElementSize.small ||
-        ElementSize.medium => icon != null || iconWidget != null,
-        ElementSize.large => true,
-        _ => throw UnsupportedError(''),
-      },
-      'Either icon or iconWidget should be provided',
-    );
+    assert(switch (size) {
+      ElementSize.small ||
+      ElementSize.medium => icon != null || iconWidget != null,
+      ElementSize.large => true,
+      _ => throw UnsupportedError(''),
+    }, 'Either icon or iconWidget should be provided');
 
     final PullDownMenuItemTheme theme =
         MenuConfig.ambientThemeOf(context).itemTheme;
@@ -346,10 +335,7 @@ class _SmallItem extends StatelessWidget {
     }
 
     return Center(
-      child: IconBox(
-        color: resolvedColor,
-        child: icon,
-      ),
+      child: IconBox(color: resolvedColor, child: icon),
     );
   }
 }
@@ -407,10 +393,7 @@ class _MediumItem extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          IconBox.small(
-            color: resolvedColor,
-            child: icon,
-          ),
+          IconBox.small(color: resolvedColor, child: icon),
           const SizedBox(height: 1),
           Text(
             title,
@@ -537,15 +520,15 @@ class _LargeItem extends StatelessWidget {
               style: TextStyle(color: resolvedStyle.color),
               child: leading!,
             ),
-          Expanded(child: body),
           if (hasIcon)
             Padding(
-              padding: const EdgeInsetsDirectional.only(start: 8),
+              padding: const EdgeInsetsDirectional.only(end: 12),
               child: IconBox(
                 color: resolvedColor,
                 child: iconWidget ?? Icon(icon),
               ),
             ),
+          Expanded(child: body),
         ],
       );
     }
@@ -566,10 +549,7 @@ class _LargeItem extends StatelessWidget {
 @immutable
 class _CheckmarkIcon extends StatelessWidget {
   /// Creates [_CheckmarkIcon].
-  const _CheckmarkIcon({
-    required this.selected,
-    required this.checkmark,
-  });
+  const _CheckmarkIcon({required this.selected, required this.checkmark});
 
   final IconData checkmark;
   final bool selected;
@@ -577,9 +557,7 @@ class _CheckmarkIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     if (!selected) {
-      return const LeadingWidgetBox(
-        height: 22,
-      );
+      return const LeadingWidgetBox(height: 22);
     }
 
     return LeadingWidgetBox(

@@ -147,6 +147,7 @@ class _MenuActionButtonState extends State<MenuActionButton> {
                   : _isHovered
                   ? widget.hoverColor
                   : null,
+          borderRadius: BorderRadius.circular(200),
         ),
         child: MenuActionButtonHoverState(
           isHovered: _isHovered && !_isPressed,
